@@ -25,9 +25,10 @@ def Init():
             "name": input("What is the name for Player %i?: "%num),
             "bank": 1000
         }
-        print("Okay %s, welcome to the game!"%(players[num])['name'])
+        print("Okay %s, welcome to the game!\n"%players[num]['name'])
     print("Alright, the players are as follows:")
-    # i rlly dont feel like finishing this rn
+    for item in players:
+        print("Player %i: %s"%(item, players[item]['name']))
 
 def promptOptions():
     raise NotImplementedError
