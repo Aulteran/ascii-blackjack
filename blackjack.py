@@ -11,15 +11,16 @@ def getNum(prompt: str):
             print("Invalid Input, please enter a number.")
     return num
 
-def displayCard(face, value):
-    if face == 'hearts':
-        face = '|-Hearts-|'
-    elif face == 'clubs':
-        pass
-    elif face == 'spacdes':
-        pass
-    elif face == 'diamonds':
-        pass
+def displayCard(suit, value):
+    #depending on suit, makes a nice line on ascii card to fit suit name
+    if suit == 'hearts':
+        line2 = '|-Hearts-|'
+    elif suit == 'clubs':
+        pass #need to finish laterr
+    elif suit == 'spacdes':
+        pass #need to finish laterr
+    elif suit == 'diamonds':
+        pass #need to finish laterr
     print("""
 ----------
 |--------| 
