@@ -63,15 +63,21 @@ def dealCard():
     elif shapeGen == 4:
         shape = "diamond"
     else:
-        print("Error in func:dealCard()")
+        print("Error in func:dealCard()\nerr:shapeGen issue")
         quit()
 
     #generates a random number between 1 and 13 for the card's value and assigns it to 'value'
-    valueGen = random.randint(1,13)
+    valueGen = random.randint(1,10)
     if valueGen == 1:
         value = "ace"
-    else: #could make this more robust by being specific instead of else statement, use else for error+quit
+    elif valueGen == 10:
+        possibleFaces = ['king', 'queen', 'jack']
+        value = random.choice(possibleFaces)
+    elif valueGen < 1 and valueGen > 10:
         value = str(valueGen)
+    else:
+        print("Error in func:dealCard()\nerr:valueGen issue")
+        quit()
 
 def playerHit(player):
     raise NotImplementedError
