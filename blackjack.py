@@ -31,7 +31,7 @@ def Init():
     # intro
     print("=========================================")
     print("Welcome to the game of Blackjack!")
-    print("Each player will be given $1000 to begin.")
+    print("Each player will be given $100 to begin.")
     print("=========================================")
 
     # find out how many players will be playing
@@ -40,7 +40,7 @@ def Init():
     for num in range(1, numPlayers+1):
         players[num] = {
             "name": input("What is the name for Player %i?: "%num),
-            "bank": 1000
+            "bank": 100
         }
         print("Okay %s, welcome to the game!\n"%players[num]['name'])
     print("Alright, the players are as follows:")
