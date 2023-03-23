@@ -72,13 +72,13 @@ def dealCard():
     else: #could make this more robust by being specific instead of else statement, use else for error+quit
         value = str(valueGen)
 
-def playerHit():
+def playerHit(player):
     raise NotImplementedError
 
-def playerStand():
+def playerStand(player):
     raise NotImplementedError
 
-def doubleDown():
+def doubleDown(player):
     raise NotImplementedError
 
 Init()
