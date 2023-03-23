@@ -1,3 +1,5 @@
+import random
+
 players = {}
 
 def getNum(prompt: str):
@@ -48,7 +50,26 @@ def promptOptions():
     raise NotImplementedError
 
 def dealCard():
-    raise NotImplementedError
+    #generates a random suit for the card dealt
+    shapeGen = random.randint(1,4)
+    if shapeGen == 1:
+        shape = "hearts"
+    elif shapeGen == 2:
+        shape = "clubs"
+    elif shapeGen == 3:
+        shape = "spades"
+    elif shapeGen == 4:
+        shape = "diamond"
+    else:
+        print("Error in func:dealCard()")
+        quit()
+
+    #generates a random number between 1 and 13 for the card's value and assigns it to 'value'
+    valueGen = random.randint(1,13)
+    if valueGen == 1:
+        value = "ace"
+    else: #could make this more robust by being specific instead of else statement, use else for error+quit
+        value = str(valueGen)
 
 def playerHit():
     raise NotImplementedError
