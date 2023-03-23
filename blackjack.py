@@ -9,6 +9,20 @@ def getNum(prompt: str):
             print("Invalid Input, please enter a number.")
     return num
 
+def displayCard(face, value):
+    if face == 'hearts':
+        face = '|-Hearts-|'
+    elif face == 'clubs':
+        pass
+    elif face == 'spacdes':
+        pass
+    elif face == 'diamonds':
+        pass
+    print("""
+----------
+|--------| 
+    """) # its 1:30am rn im broken inside, we work on this later lol
+
 def Init():
     global players
     # intro
