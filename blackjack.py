@@ -47,8 +47,9 @@ def Init():
     for item in players:
         print("Player %i: %s"%(item, players[item]['name']))
 
-def promptOptions():
-    raise NotImplementedError
+# unsure if i need this func
+# def promptOptions():
+#     raise NotImplementedError
 
 def dealCard():
     #generates a random suit for the card dealt
