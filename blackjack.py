@@ -17,7 +17,7 @@ def displayCard(suit, value):
         line2 = '|-Hearts-|'
     elif suit == 'clubs':
         pass #need to finish laterr
-    elif suit == 'spacdes':
+    elif suit == 'spades':
         pass #need to finish laterr
     elif suit == 'diamonds':
         pass #need to finish laterr
