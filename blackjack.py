@@ -16,11 +16,11 @@ def displayCard(suit, value):
     if suit == 'hearts':
         line2 = '|-Hearts-|'
     elif suit == 'clubs':
-        pass #need to finish laterr
+        break #need to finish laterr
     elif suit == 'spacdes':
-        pass #need to finish laterr
+        break #need to finish laterr
     elif suit == 'diamonds':
-        pass #need to finish laterr
+        break #need to finish laterr
     print("""
 ----------
 |--------| 
@@ -47,7 +47,27 @@ def Init():
     for item in players:
         print("Player %i: %s"%(item, players[item]['name']))
 
-def promptOptions():
+def promptOptions(player):
+    # prompts player to hit or stand
+    while True:
+        print("%s, what do you want to do?"%player['name'])
+        print('''
+        Options:
+        1. Hit
+        2. Stand
+        3. Double Down
+        4. Back Out of Game''')
+        option = getNum("\nEnter your choice: ")
+        if option == 1:
+            break
+        elif option == 2:
+            break
+        elif option == 3:
+            break
+        elif option == 4:
+            quit()
+        else:
+            print("Invalid option, try again.")
     raise NotImplementedError
 
 def dealCard():
