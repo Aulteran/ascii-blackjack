@@ -16,11 +16,11 @@ def displayCard(suit, value):
     if suit == 'hearts':
         line2 = '|-Hearts-|'
     elif suit == 'clubs':
-        break #need to finish laterr
-    elif suit == 'spacdes':
-        break #need to finish laterr
+        pass #need to finish laterr
+    elif suit == 'spades':
+        pass #need to finish laterr
     elif suit == 'diamonds':
-        break #need to finish laterr
+        pass #need to finish laterr
     print("""
 ----------
 |--------| 
@@ -31,7 +31,7 @@ def Init():
     # intro
     print("=========================================")
     print("Welcome to the game of Blackjack!")
-    print("Each player will be given $1000 to begin.")
+    print("Each player will be given $100 to begin.")
     print("=========================================")
 
     # find out how many players will be playing
@@ -40,7 +40,7 @@ def Init():
     for num in range(1, numPlayers+1):
         players[num] = {
             "name": input("What is the name for Player %i?: "%num),
-            "bank": 1000
+            "bank": 100
         }
         print("Okay %s, welcome to the game!\n"%players[num]['name'])
     print("Alright, the players are as follows:")
@@ -82,15 +82,21 @@ def dealCard():
     elif shapeGen == 4:
         shape = "diamond"
     else:
-        print("Error in func:dealCard()")
+        print("Error in func:dealCard()\nerr:shapeGen issue")
         quit()
 
     #generates a random number between 1 and 13 for the card's value and assigns it to 'value'
-    valueGen = random.randint(1,13)
+    valueGen = random.randint(1,10)
     if valueGen == 1:
         value = "ace"
-    else: #could make this more robust by being specific instead of else statement, use else for error+quit
+    elif valueGen == 10:
+        possibleFaces = ['king', 'queen', 'jack']
+        value = random.choice(possibleFaces)
+    elif valueGen < 1 and valueGen > 10:
         value = str(valueGen)
+    else:
+        print("Error in func:dealCard()\nerr:valueGen issue")
+        quit()
 
 def playerHit(player):
     raise NotImplementedError
