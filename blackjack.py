@@ -95,11 +95,13 @@ def dealCard():
     elif valueGen == 10:
         possibleFaces = ['king', 'queen', 'jack']
         value = random.choice(possibleFaces)
-    elif valueGen < 1 and valueGen > 10:
+    elif valueGen < 10 and valueGen > 1:
         value = str(valueGen)
     else:
         print("Error in func:dealCard()\nerr:valueGen issue")
         quit()
+    
+    return value, shape
 
 def playerHit(player):
     raise NotImplementedError
