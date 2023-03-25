@@ -47,7 +47,7 @@ def Init():
     for item in players:
         print("Player %i: %s"%(item, players[item]['name']))
 
-def promptOptions(player):
+def promptOptions(player, canDoubleDown):
     # prompts player to hit or stand
     while True:
         print("%s, what do you want to do?"%player['name'])
@@ -59,11 +59,14 @@ def promptOptions(player):
         4. Back Out of Game''')
         option = getNum("\nEnter your choice: ")
         if option == 1:
-            break
+            return 'hit'
         elif option == 2:
-            break
+            return 'stand'
         elif option == 3:
-            break
+            if canDoubleDown:
+                return 'doubdown'
+            else:
+                print("You can't double down this turn.")
         elif option == 4:
             quit()
         else:
@@ -104,7 +107,18 @@ def playerHit(player):
 def playerStand(player):
     raise NotImplementedError
 
-def doubleDown(player):
+def playerDoubleDown(player):
     raise NotImplementedError
 
 Init()
+
+for player in players:
+    play = promptOptions(player)
+    if play == 'hit':
+        playerHit(player)
+    elif play == 'stand':
+        playerStand(player)
+    elif play == 'doubdown':
+        playerDoubleDown(player)
+    else:
+        print("Error in main play loop\nerr:play not valid")
