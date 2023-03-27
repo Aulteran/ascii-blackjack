@@ -25,6 +25,7 @@ def displayCard(suit, value):
 ----------
 |--------| 
     """) # its 1:30am rn im broken inside, we work on this later lol
+    # this is last priority function, can use text identifiers for now. ascii later ig
 
 def Init():
     global players
@@ -40,7 +41,8 @@ def Init():
     for num in range(1, numPlayers+1):
         players[num] = {
             "name": input("What is the name for Player %i?: "%num),
-            "bank": 100
+            "bank": 100,
+            "hand": []
         }
         print("Okay %s, welcome to the game!\n"%players[num]['name'])
     print("Alright, the players are as follows:")
@@ -71,6 +73,9 @@ def promptOptions(player, canDoubleDown):
             quit()
         else:
             print("Invalid option, try again.")
+    raise NotImplementedError
+
+def canPlayerDoubDown(card1, card2):
     raise NotImplementedError
 
 def dealCard():
@@ -114,8 +119,12 @@ def playerDoubleDown(player):
 
 Init()
 
+# initial dealt hand:
+# to be coded
+
+# looping through to see what player plays
 for player in players:
-    play = promptOptions(player)
+    play = promptOptions(player, canPlayerDoubDown())
     if play == 'hit':
         playerHit(player)
     elif play == 'stand':
