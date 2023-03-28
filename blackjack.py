@@ -142,4 +142,11 @@ while True:
         else:
             print("Error in main play loop\nerr:play not valid")
 
-    #
+    # if any player wishes to quit the application, quit()
+    quitQuery = input("Would any player like to leave the game at this time?[yes/no]: ").upper()
+    if quitQuery[1] == "Y":
+        quit()
+    elif quitQuery[1] == "N":
+        continue
+    else:
+        print("Error in main play loop\nerr:quitQuery not valid")
