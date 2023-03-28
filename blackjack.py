@@ -39,10 +39,12 @@ def Init():
     numPlayers = getNum("\nHow many players will be playing?: ")
     
     for num in range(1, numPlayers+1):
+        # create playerdata within players dict
+        # include name, amount, and hands with hand values within nested dict
         players[num] = {
             "name": input("What is the name for Player %i?: "%num),
             "bank": 100,
-            "hand": []
+            "hands": {1:[]}
         }
         print("Okay %s, welcome to the game!\n"%players[num]['name'])
     print("Alright, the players are as follows:")
@@ -73,7 +75,6 @@ def promptOptions(player, canDoubleDown):
             quit()
         else:
             print("Invalid option, try again.")
-    raise NotImplementedError
 
 def canPlayerDoubDown(playerhand):
     if playerhand[1] == playerhand[2]:
