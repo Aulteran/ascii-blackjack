@@ -124,15 +124,21 @@ Init()
 
 # initial dealt hand:
 # to be coded
+while True:
+    for player in players:
+        value, shape = dealCard()
+        players[player]['hand'] += value
 
-# looping through to see what player plays
-for player in players:
-    play = promptOptions(player, canPlayerDoubDown(players[player]['hand']))
-    if play == 'hit':
-        playerHit(player)
-    elif play == 'stand':
-        playerStand(player)
-    elif play == 'doubdown':
-        playerDoubleDown(player)
-    else:
-        print("Error in main play loop\nerr:play not valid")
+    # looping through to see what player plays
+    for player in players:
+        play = promptOptions(player, canPlayerDoubDown(players[player]['hand']))
+        if play == 'hit':
+            playerHit(player)
+        elif play == 'stand':
+            playerStand(player)
+        elif play == 'doubdown':
+            playerDoubleDown(player)
+        else:
+            print("Error in main play loop\nerr:play not valid")
+
+    #
