@@ -132,7 +132,7 @@ while True:
         players[player]['hands'][1] += value
 
         # plays the players' hand
-        play = promptOptions(player, canPlayerDoubDown(players[player]['hand']))
+        play = promptOptions(player, canPlayerDoubDown(players[player]['hands'][1]))
         if play == 'hit':
             playerHit(player)
         elif play == 'stand':
