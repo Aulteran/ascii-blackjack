@@ -128,8 +128,9 @@ Init()
 while True:
     for player in players:
         # deals player a hand at start of round
-        value, shape = dealCard()
-        players[player]['hands'][1] += value
+        for i in range(0,2):
+            value, shape = dealCard()
+            players[player]['hands'][1] += value
 
         # plays the players' hand
         play = promptOptions(player, canPlayerDoubDown(players[player]['hands'][1]))
