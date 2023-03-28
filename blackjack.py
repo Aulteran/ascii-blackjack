@@ -75,8 +75,11 @@ def promptOptions(player, canDoubleDown):
             print("Invalid option, try again.")
     raise NotImplementedError
 
-def canPlayerDoubDown(card1, card2):
-    raise NotImplementedError
+def canPlayerDoubDown(playerhand):
+    if playerhand[1] == playerhand[2]:
+        return True
+    else:
+        return False
 
 def dealCard():
     #generates a random suit for the card dealt
@@ -124,7 +127,7 @@ Init()
 
 # looping through to see what player plays
 for player in players:
-    play = promptOptions(player, canPlayerDoubDown())
+    play = promptOptions(player, canPlayerDoubDown(players[player]['hand']))
     if play == 'hit':
         playerHit(player)
     elif play == 'stand':
