@@ -127,11 +127,11 @@ Init()
 # to be coded
 while True:
     for player in players:
+        # deals player a hand at start of round
         value, shape = dealCard()
-        players[player]['hand'] += value
+        players[player]['hands'][1] += value
 
-    # looping through to see what player plays
-    for player in players:
+        # plays the players' hand
         play = promptOptions(player, canPlayerDoubDown(players[player]['hand']))
         if play == 'hit':
             playerHit(player)
@@ -142,7 +142,7 @@ while True:
         else:
             print("Error in main play loop\nerr:play not valid")
 
-    # if any player wishes to quit the application, quit()
+    # if any player wishes to quit the application between rounds, quit()
     quitQuery = input("Would any player like to leave the game at this time?[yes/no]: ").upper()
     if quitQuery[1] == "Y":
         quit()
