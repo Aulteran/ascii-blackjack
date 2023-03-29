@@ -133,8 +133,14 @@ def playerDoubleDown(player):
     raise NotImplementedError
 
 
-def displayHand():
-    raise NotImplementedError
+def displayHand(hand):
+    handValue = 0
+    print('the following cards are of your hand: ', hand)
+    for card in hand:
+        handValue += card
+    print('your hand is valued at ', handValue)
+
+    return handValue
 
 
 Init()
@@ -147,9 +153,12 @@ while True:
             value, shape = dealCard()
             if value == 1:
                 aceAvail = True
-                players[player]['hands'][1].append(value)
+                pass
             else:
-                players[player]['hands'][1][0] += value #need to change to save cards in hand separately - to check if can doubdown
+                players[player]['hands'][1].append(value) 
+                
+        # displays players hand
+        displayHand(players[player]['hands'][1])
 
         # plays the players' hand
         play = promptOptions(player, canPlayerDoubDown(players[player]['hands'][1]))
