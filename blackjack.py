@@ -100,12 +100,14 @@ def dealCard():
     #generates a random number between 1 and 13 for the card's value and assigns it to 'value'
     valueGen = random.randint(1,10)
     if valueGen == 1:
-        value = "ace"
+        # value = "ace"
+        value = 10
     elif valueGen == 10:
-        possibleFaces = ['king', 'queen', 'jack']
-        value = random.choice(possibleFaces)
+        # possibleFaces = ['king', 'queen', 'jack']
+        # value = random.choice(possibleFaces)
+        value = 10
     elif valueGen < 10 and valueGen > 1:
-        value = str(valueGen)
+        value = valueGen
     else:
         print("Error in func:dealCard()\nerr:valueGen issue")
         quit()
