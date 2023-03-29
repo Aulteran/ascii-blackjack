@@ -97,7 +97,7 @@ def dealCard():
         print("Error in func:dealCard()\nerr:shapeGen issue")
         quit()
 
-    #generates a random number between 1 and 13 for the card's value and assigns it to 'value'
+    #generates a random number between 1 and 10 for the card's value and assigns it to 'value'
     valueGen = random.randint(1,10)
     if valueGen == 1:
         # value = "ace"
@@ -114,13 +114,16 @@ def dealCard():
     
     return value, shape
 
-def playerHit(player):
+def playerHit(player, aceCheck):
     raise NotImplementedError
 
 def playerStand(player):
     raise NotImplementedError
 
 def playerDoubleDown(player):
+    raise NotImplementedError
+
+def displayHand():
     raise NotImplementedError
 
 Init()
@@ -132,12 +135,16 @@ while True:
         # deals player a hand at start of round
         for i in range(0,2):
             value, shape = dealCard()
-            players[player]['hands'][1] += value
+            if value == 1:
+                aceAvail = True
+                players[player]['hands'][1].append(value)
+            else:
+                players[player]['hands'][1] += value
 
         # plays the players' hand
         play = promptOptions(player, canPlayerDoubDown(players[player]['hands'][1]))
         if play == 'hit':
-            playerHit(player)
+            playerHit(player, aceAvail)
         elif play == 'stand':
             playerStand(player)
         elif play == 'doubdown':
