@@ -144,6 +144,10 @@ while True:
             playerDoubleDown(player)
         else:
             print("Error in main play loop\nerr:play not valid")
+            quit()
+    
+        # clear player hands after each turn
+        players[player]['hands'][1].clear()
 
     # if any player wishes to quit the application between rounds, quit()
     quitQuery = input("Would any player like to leave the game at this time?[yes/no]: ").upper()
