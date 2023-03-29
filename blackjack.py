@@ -139,8 +139,7 @@ def displayHand():
 
 Init()
 
-# initial dealt hand:
-# to be coded
+# loops through, keeping game going until quit executed
 while True:
     for player in players:
         # deals player a hand at start of round
@@ -153,8 +152,7 @@ while True:
                 players[player]['hands'][1][0] += value #need to change to save cards in hand separately - to check if can doubdown
 
         # plays the players' hand
-        play = promptOptions(player, canPlayerDoubDown(
-            players[player]['hands'][1]))
+        play = promptOptions(player, canPlayerDoubDown(players[player]['hands'][1]))
         if play == 'hit':
             playerHit(player, aceAvail)
         elif play == 'stand':
@@ -172,6 +170,7 @@ while True:
     quitQuery = input(
         "Would any player like to leave the game at this time?[yes/no]: ").upper()
     if quitQuery[1] == "Y":
+        print('Quitting the application:\nuser excuted')
         quit()
     elif quitQuery[1] == "N":
         continue
