@@ -134,10 +134,25 @@ def playerDoubleDown(player):
 
 
 def displayHand(hand):
+    global aceAvail
+    prehandValue = 0
     handValue = 0
-    print('the following cards are of your hand: ', hand)
+    numAces = hand.count(1)
+    print('the following cards are of your hand: ', hand) 
+    
     for card in hand:
-        handValue += card
+        if card != 1:
+            prehandValue += card
+    
+    for i in range(1,numAces+1):
+        if prehandValue + 11:
+            pass
+
+    # hand.sort()
+    # 
+    # for i in range(hand.index(1), hand.index(1)+numAces):
+    #     pass
+
     print('your hand is valued at ', handValue)
 
     return handValue
@@ -158,7 +173,7 @@ while True:
                 players[player]['hands'][1].append(value) 
                 
         # displays players hand
-        displayHand(players[player]['hands'][1])
+        hand = displayHand(players[player]['hands'][1])
 
         # plays the players' hand
         play = promptOptions(player, canPlayerDoubDown(players[player]['hands'][1]))
