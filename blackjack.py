@@ -179,7 +179,7 @@ while True:
     quitQuery = input(
         "Would any player like to leave the game at this time?[yes/no]: ").upper()
     if quitQuery[1] == "Y":
-        print('Quitting the application:\nuser excuted')
+        print('Quitting the application:\nuser executed')
         quit()
     elif quitQuery[1] == "N":
         continue
