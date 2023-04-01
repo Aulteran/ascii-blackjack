@@ -1,3 +1,10 @@
+# Primary Dev: Aadil Hussain
+# Secondaries: -x-
+# Date: March 31, 2023
+# Description: This is a blackjack game with multiple players and full economy support.
+
+# Next Goal: transfer playerdata dict methods to python class.
+
 import random
 
 players = {}
@@ -47,7 +54,7 @@ def Init():
         players[num] = {
             "name": input("What is the name for Player %i?: " % num),
             "bank": 100,
-            "hands": {1: [0]}
+            "hands": {1: [0]} #hands is a dict with lists inside because hand 1 will be default. if hand split, additional hands 2 and 3 can be made and 1 un-used.
         }
         print("Okay %s, welcome to the game!\n" % players[num]['name'])
     print("Alright, the players are as follows:")
@@ -105,6 +112,7 @@ def dealCard():
 
     # generates a random number between 1 and 10 for the card's value and assigns it to 'value'
     valueGen = random.randint(1, 10)
+    # this IF-statement is unnecessary, but kept incase wanna rework face assignments.
     if valueGen == 1:
         # value = "ace"
         value = 10
@@ -134,11 +142,13 @@ def playerDoubleDown(player):
 
 
 def displayHand(hand):
+    # func that will count the value of the entire hand, taking into account aces.
+    # will also return hand value on top of printing value.
     global aceAvail
     prehandValue = 0
     handValue = 0
     numAces = hand.count(1)
-    print('the following cards are of your hand: ', hand) 
+    print('the following cards are of your hand: ', hand)
     
     for card in hand:
         if card != 1:
@@ -147,7 +157,8 @@ def displayHand(hand):
     for i in range(1,numAces+1):
         if prehandValue + 11:
             pass
-
+    
+    # discarded
     # hand.sort()
     # 
     # for i in range(hand.index(1), hand.index(1)+numAces):
@@ -187,8 +198,9 @@ while True:
             print("Error in main play loop\nerr:play not valid")
             quit()
 
-        # clear player hands after each turn
-        players[player]['hands'][1].clear()
+        # clear all player hands after each turn
+        for hand in players[player]['hands']:
+            players[player]['hands'][hand].clear()
 
     # if any player wishes to quit the application between rounds, quit()
     quitQuery = input(
@@ -197,6 +209,6 @@ while True:
         print('Quitting the application:\nuser executed')
         quit()
     elif quitQuery[1] == "N":
-        continue
+        continue # break this iteration of while loop and move on to next iteration.
     else:
         print("Error in main play loop\nerr:quitQuery not valid")
