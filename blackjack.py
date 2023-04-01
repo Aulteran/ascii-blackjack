@@ -37,6 +37,15 @@ def displayCard(suit, value):
     # this is last priority function, can use text identifiers for now. ascii later ig
 
 
+class Player:
+    def __init__(self, name, bank):
+        self.name = name
+        self.bank = bank
+        self.hands = {}
+    
+    # need to add more player methods
+
+
 def Init():
     global players
     # intro
