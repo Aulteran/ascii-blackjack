@@ -88,11 +88,7 @@ def promptOptions(player, canDoubleDown):
             print("Invalid option, try again.")
 
 
-def canPlayerDoubDown(playerhand):
-    if playerhand[0] == playerhand[1]:
-        return True
-    else:
-        return False
+canPlayerDoubDown = lambda playerhand: True if playerhand[0] == playerhand[1] else False
 
 
 def dealCard():
