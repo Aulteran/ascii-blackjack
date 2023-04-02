@@ -1,9 +1,8 @@
+# Version: 0.1.0
 # Primary Dev: Aadil Hussain
 # Secondaries: -x-
 # Date: March 31, 2023
 # Description: This is a blackjack game with multiple players and full economy support.
-
-# Next Goal: transfer playerdata dict methods to python class.
 
 import random
 
