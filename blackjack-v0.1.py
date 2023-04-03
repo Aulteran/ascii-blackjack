@@ -96,7 +96,7 @@ def promptOptions(player, canDoubleDown):
             print("Invalid option, try again.")
 
 
-canPlayerDoubDown = lambda playerhand: True if playerhand[0] == playerhand[1] else False
+canPlayerSplit = lambda playerhand: True if playerhand[0] == playerhand[1] else False
 
 
 def dealCard():
@@ -191,7 +191,7 @@ while True:
         hand = displayHand(players[player]['hands'][1])
 
         # plays the players' hand
-        play = promptOptions(player, canPlayerDoubDown(players[player]['hands'][1]))
+        play = promptOptions(player, canPlayerSplit(players[player]['hands'][1]))
         if play == 'hit':
             playerHit(player, aceAvail)
         elif play == 'stand':
