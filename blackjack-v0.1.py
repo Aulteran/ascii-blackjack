@@ -207,8 +207,7 @@ while True:
             players[player]['hands'][hand].clear()
 
     # if any player wishes to quit the application between rounds, quit()
-    quitQuery = input(
-        "Would any player like to leave the game at this time?[yes/no]: ").upper()
+    quitQuery = input("Would any player like to leave the game at this time?[yes/no]: ").upper()
     if quitQuery[1] == "Y":
         print('Quitting the application:\nuser executed')
         quit()

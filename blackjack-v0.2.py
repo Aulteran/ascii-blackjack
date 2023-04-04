@@ -57,6 +57,9 @@ class Player:
         self.hands = {}
         self.hand_doubled_down = bool
         self.hand_split = bool
+
+    def eval_hand():
+        raise NotImplementedError
     
     def player_hit(player, handIndex):
         card_value, card_shape = deal_card()
@@ -112,4 +115,12 @@ while True:
 
     # too sleepy now, we make later :)
 
-    break
+    # if any player wishes to quit the application between rounds, quit()
+    quitQuery = input("Would any player like to leave the game at this time?[yes/no]: ").upper()
+    if quitQuery[1] == "Y":
+        print('Quitting the application:\nuser executed')
+        break
+    elif quitQuery[1] == "N":
+        continue # break this iteration of while loop and move on to next iteration.
+    else:
+        print("Error in main play loop\nerr:quitQuery not valid")
