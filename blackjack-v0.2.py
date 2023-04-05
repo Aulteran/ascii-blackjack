@@ -59,22 +59,17 @@ class Player:
 
     def eval_hand(self, handIndex):
         add = sum(self.hands[handIndex])
+        loopIteration = -1
         for card in self.hands[handIndex]:
-            print(card)
+            loopIteration += 1
             if card==11:
                 if add>21:
-                    card=1
+                    self.hands[handIndex][loopIteration] = 1
                     add = sum(self.hands[handIndex])
                     continue
                 break
         return sum(self.hands[handIndex])
-       
-        # find how many aces in hand
-        # find total hand val without aces accounted
-        # check if handval is above 21
-        # add first ace as 11, check if handval >21
-        # if yes, add ace as 1, check if handval >21
-        # if handval over 21, bust.
+
     
     def player_hit(player, handIndex):
         card_value, card_shape = deal_card()
@@ -102,46 +97,43 @@ players = []
 # create players
 for i in range(numPlayers):
     # Creates player object
-    player = Player(input('Enter name for Player {}: '.format(i+1)), {0: [11, 11]})
+    player = Player(input('Enter name for Player {}: '.format(i+1)))
     players.append(player)
 print() # spacer to separate roster readback
 
+# player roster readback/check
 for player in players:
-    print(player.eval_hand(0))
+    print("Player {}: {} with ${}".format(players.index(player) + 1, player.name, player.money))
 
-# # player roster readback/check
-# for player in players:
-#     print("Player {}: {} with ${}".format(players.index(player) + 1, player.name, player.money))
+# still debating what to do with this, will come back to it later
+# readback_verification = lambda verif=input('Is this playerlist correct?[Y/N]: ').upper(): True if verif[0] == 'Y' else False if verif[0] == 'N' else print('invalid input')
 
-# # still debating what to do with this, will come back to it later
-# # readback_verification = lambda verif=input('Is this playerlist correct?[Y/N]: ').upper(): True if verif[0] == 'Y' else False if verif[0] == 'N' else print('invalid input')
+while True:
+    # at start of round, display current stats, clear all hands, and deal new hand
+    print("\n=========================================\nCurrent Stats: ")
+    for player in players:
+        print("{} with ${}".format(player.name, player.money))
+        player.hand_doubled_down = False; player.hand_split = False; player.hands.clear()
+        card_value1, card_shape1 = deal_card()
+        card_value2, card_shape2 = deal_card()
+        player.hands[0] = [card_value1, card_value2]
+    print("=========================================\n")
 
-# while True:
-#     # at start of round, display current stats, clear all hands, and deal new hand
-#     print("\n=========================================\nCurrent Stats: ")
-#     for player in players:
-#         print("{} with ${}".format(player.name, player.money))
-#         player.hand_doubled_down = False; player.hand_split = False; player.hands.clear()
-#         card_value1, card_shape1 = deal_card()
-#         card_value2, card_shape2 = deal_card()
-#         player.hands[0] = [card_value1, card_value2]
-#     print("=========================================\n")
+    # show each player their hand and ask for play
+    for player in players:
+        print(player.hands[0])
+        print(player.eval_hand(0))
 
-#     # show each player their hand and ask for play
-#     for player in players:
-#         print(player.hands[0])
-#         print(player.eval_hand(0))
+    # process all playerhands with dealerhand and check for blackjack
 
-#     # process all playerhands with dealerhand and check for blackjack
+    # too sleepy now, we make later :)
 
-#     # too sleepy now, we make later :)
-
-#     # if any player wishes to quit the application between rounds, quit()
-#     quitQuery = input("Would any player like to leave the game at this time?[yes/no]: ").upper()
-#     if quitQuery[1] == "Y":
-#         print('Quitting the application:\nuser executed')
-#         break
-#     elif quitQuery[1] == "N":
-#         continue # break this iteration of while loop and move on to next iteration.
-#     else:
-#         print("Error in main play loop\nerr:quitQuery not valid")
+    # if any player wishes to quit the application between rounds, quit()
+    quitQuery = input("Would any player like to leave the game at this time?[yes/no]: ").upper()
+    if quitQuery[1] == "Y":
+        print('Quitting the application:\nuser executed')
+        break
+    elif quitQuery[1] == "N":
+        continue # break this iteration of while loop and move on to next iteration.
+    else:
+        print("Error in main play loop\nerr:quitQuery not valid")
