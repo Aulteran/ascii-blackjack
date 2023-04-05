@@ -59,6 +59,12 @@ class Player:
         self.hand_split = bool
 
     def eval_hand():
+        # find how many aces in hand
+        # find total hand val without aces accounted
+        # check if handval is above 21
+        # add first ace as 11, check if handval >21
+        # if yes, add ace as 1, check if handval >21
+        # if handval over 21, bust.
         raise NotImplementedError
     
     def player_hit(player, handIndex):
