@@ -83,6 +83,7 @@ class Player:
     def player_hit(self, hand_index):
         '''Deals player another card to current hand'''
         card_value, card_shape = deal_card()
+        del card_shape # dumping card_shape to save memory, can recall if decided to use in future.
         player.hands[hand_index].append(card_value)
 
     def player_stand(self):
