@@ -1,55 +1,63 @@
-# Version: 0.2.0
-# Primary Dev: Aadil Hussain
-# Secondaries: -x-
-# Date: March 31, 2023
-# Description: This is a blackjack game with multiple players and full economy support.
+'''
+Version: 0.2.0
+Primary Dev: Aadil Hussain
+Secondaries: -x-
+Build Date: March 31, 2023
+Description: This is a blackjack game with multiple players and full economy support.
+Intended Python Version: 3.10.4
+Dependancies: random module
+'''
 
+import random
 
-def getNum(prompt: str):
+def get_int(prompt: str):
+    '''gets integer input from user without error'''
     while True:
         try:
             num = int(input(prompt))
             break
-        except (ValueError):
+        except ValueError:
             print("Invalid Input, please enter a whole number.")
     return num
 
 
 def deal_card():
-    import random
+    '''deals player a random card from deck, joker not included'''
+
     # generates a random suit for the card dealt
-    shapeGen = random.randint(1, 4)
-    if shapeGen == 1:
+    shape_gen = random.randint(1, 4)
+    if shape_gen == 1:
         shape = "hearts"
-    elif shapeGen == 2:
+    elif shape_gen == 2:
         shape = "clubs"
-    elif shapeGen == 3:
+    elif shape_gen == 3:
         shape = "spades"
-    elif shapeGen == 4:
+    elif shape_gen == 4:
         shape = "diamond"
     else:
-        print("Error in func:dealCard()\nerr:shapeGen issue")
+        print("Error in func:dealCard()\nerr:shape_gen issue")
         quit()
 
     # generates a random number between 1 and 10 for the card's value and assigns it to 'value'
-    valueGen = random.randint(1, 10)
+    value_gen = random.randint(1, 10)
     # this IF-statement is unnecessary, but kept incase wanna rework face assignments.
-    if valueGen == 1:
+    if value_gen == 1:
         value = 11
-    elif valueGen == 10:
+    elif value_gen == 10:
         # possibleFaces = ['king', 'queen', 'jack']
         # value = random.choice(possibleFaces)
         value = 10
-    elif valueGen < 10 and valueGen > 1:
-        value = valueGen
+    elif value_gen < 10 and value_gen > 1:
+        value = value_gen
     else:
-        print("Error in func:dealCard()\nerr:valueGen issue")
+        print("Error in func:dealCard()\nerr:value_gen issue")
         quit()
 
     return value, shape
 
 
 class Player:
+    '''Handles Playerdata as Object'''
     def __init__(self, name, hands={}):
         self.name = name
         self.money = 100
@@ -57,33 +65,38 @@ class Player:
         self.hand_doubled_down = bool
         self.hand_split = bool
 
-    def eval_hand(self, handIndex):
-        add = sum(self.hands[handIndex])
-        loopIteration = -1
-        for card in self.hands[handIndex]:
-            loopIteration += 1
+    def eval_hand(self, hand_index):
+        '''Evaluates value of user's hand'''
+        add = sum(self.hands[hand_index])
+        loop_iteration = -1
+        for card in self.hands[hand_index]:
+            loop_iteration += 1
             if card==11:
                 if add>21:
-                    self.hands[handIndex][loopIteration] = 1
-                    add = sum(self.hands[handIndex])
+                    self.hands[hand_index][loop_iteration] = 1
+                    add = sum(self.hands[hand_index])
                     continue
                 break
-        return sum(self.hands[handIndex])
+        return sum(self.hands[hand_index])
 
-    
-    def player_hit(player, handIndex):
+
+    def player_hit(self, hand_index):
+        '''Deals player another card to current hand'''
         card_value, card_shape = deal_card()
-        player.hands[handIndex].append(card_value)
-    
-    def player_stand():
+        player.hands[hand_index].append(card_value)
+
+    def player_stand(self):
+        '''Allows player to stand round'''
         raise NotImplementedError
-    
-    def player_doubledown():
+
+    def player_doubledown(self):
+        '''allows player to hit while doubling bet'''
         raise NotImplementedError
-    
-    def player_split_hand():
+
+    def player_split_hand(self):
+        '''splits player hand if hand is splittable'''
         raise NotImplementedError
-    
+
 
 print("=========================================")
 print("Welcome to the game of Blackjack!")
@@ -91,7 +104,7 @@ print("Each player will be given $100 to begin.")
 print("=========================================")
 
 # how many players
-numPlayers = getNum("How many players will be playing?: ")
+numPlayers = get_int("How many players will be playing?: ")
 
 players = []
 # create players
@@ -106,7 +119,7 @@ for player in players:
     print("Player {}: {} with ${}".format(players.index(player) + 1, player.name, player.money))
 
 # still debating what to do with this, will come back to it later
-# readback_verification = lambda verif=input('Is this playerlist correct?[Y/N]: ').upper(): True if verif[0] == 'Y' else False if verif[0] == 'N' else print('invalid input')
+readback_verification = lambda verif=input('Is this playerlist correct?[Y/N]: ').upper(): True if verif[0] == 'Y' else False if verif[0] == 'N' else print('invalid input')
 
 while True:
     # at start of round, display current stats, clear all hands, and deal new hand
