@@ -125,19 +125,27 @@ for player in players:
 readback_verification = lambda verif=input('Is this playerlist correct?[Y/N]: ').upper(): True if verif[0] == 'Y' else False if verif[0] == 'N' else print('invalid input')
 
 while True:
-    # at start of round, display current stats, clear all hands, and deal new hand
+    # start of round information panel
     print("\n=========================================\nCurrent Stats: ")
+    # display players' eco + reset playerdata + deal new hands
     for player in players:
         print("{} with ${}".format(player.name, player.money))
         player.hand_doubled_down = False; player.hand_split = False; player.hands.clear()
         card_value1, card_shape1 = deal_card()
         card_value2, card_shape2 = deal_card()
         player.hands[0] = [card_value1, card_value2]
+    # reset dealer playerdata
     dealer.hand_doubled_down = False; dealer.hand_split = False; dealer.hands.clear()
+    # deal hand to dealer
     card_value1, card_shape1 = deal_card()
     card_value2, card_shape2 = deal_card()
-    del card_shape1, card_shape2
     dealer.hands[0] = [card_value1, card_value2]
+    # delete card shape vars to save memory
+    del card_shape1, card_shape2
+
+    # display dealer hands to player
+    print(f"Dealer's Hand: {dealer.eval_hand(0)}")
+    # end info panel
     print("=========================================\n")
 
     # show each player their hand and ask for play
