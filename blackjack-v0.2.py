@@ -107,8 +107,10 @@ print("=========================================")
 # how many players
 numPlayers = get_int("How many players will be playing?: ")
 
-players = []
+# create dealer
+dealer = Player('Dealer')
 # create players
+players = []
 for i in range(numPlayers):
     # Creates player object
     player = Player(input('Enter name for Player {}: '.format(i+1)))
@@ -131,6 +133,11 @@ while True:
         card_value1, card_shape1 = deal_card()
         card_value2, card_shape2 = deal_card()
         player.hands[0] = [card_value1, card_value2]
+    dealer.hand_doubled_down = False; dealer.hand_split = False; dealer.hands.clear()
+    card_value1, card_shape1 = deal_card()
+    card_value2, card_shape2 = deal_card()
+    del card_shape1, card_shape2
+    dealer.hands[0] = [card_value1, card_value2]
     print("=========================================\n")
 
     # show each player their hand and ask for play
